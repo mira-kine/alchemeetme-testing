@@ -15,12 +15,13 @@ const user = {
 test('Should render the user profile', async () => {
   render(<Home user={user} />)
 
+  const { name, color, motto, likes } = user
   // name - heading
-  const name = await screen.findByRole('heading', { name: /vonta/i })
-  expect(name).toBeInTheDocument()
+  const profileName = await screen.findByRole('heading', { name })
+  expect(profileName).toBeInTheDocument()
   // motto - getByRole async/await
-  const motto = await screen.findByText(/Res Non Verba/i)
-  expect(motto).toBeInTheDocument()
+  const userMotto = screen.getByText(motto)
+  expect(userMotto).toBeInTheDocument()
   // interests heading - getByRole heading
   const interests = screen.getByRole('heading', { name: /interests/i })
   expect(interests).toBeInTheDocument()
@@ -31,9 +32,9 @@ test('Should render the user profile', async () => {
   const headerImg = screen.getByAltText(/header/i)
   expect(headerImg).toBeInTheDocument()
   // list of user likes - list item
-  const likes = await screen.findAllByRole('listitem')
-  expect(likes).toHaveLength(6)
+  const likesList = screen.getByRole('list')
+  expect(likesList.children.length).toEqual(likes.length)
   // color of name
-  const color = await screen.findByText(/favorite/i)
-  expect(color).toBeInTheDocument()
+  const favColor = screen.getByText(color)
+  expect(favColor).toBeInTheDocument()
 })
