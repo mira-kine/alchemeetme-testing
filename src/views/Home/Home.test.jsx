@@ -1,4 +1,3 @@
-
 const user = {
   id: 1,
   created_at: '2021-12-13T00:17:29+00:00',
@@ -10,6 +9,4 @@ const user = {
   color: 'crimson',
 }
 
-test('Should render the user profile', () => {
-
-})
+test('Should render the user profile', () => {})
